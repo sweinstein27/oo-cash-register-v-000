@@ -12,7 +12,11 @@ def initialize(discount = nil)
 end
 
 def add_item(title, price, quantity = 1)
-  self.total = self.total + (price * quantity)
+  self.total += price * quantity
+  quantity.times do
+    items << title
+  end
+  self.last_transaction = amount * quantity
 end
 
 def apply_discount

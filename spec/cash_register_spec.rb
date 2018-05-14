@@ -1,3 +1,5 @@
+require "pry"
+
 describe 'CashRegister' do
   let(:cash_register) { CashRegister.new }
   let(:cash_register_with_discount) { CashRegister.new(20) }
@@ -22,7 +24,7 @@ describe 'CashRegister' do
   describe '#add_item' do
     it 'accepts a title and a price and increases the total' do
       expect{cash_register.add_item("eggs", 0.98)}.to change{cash_register.total}.by(0.98)
-    end
+        end
 
     it 'also accepts an optional quantity' do
       expect{cash_register.add_item("book", 5.00, 3)}.to change{cash_register.total}.by(15.00)
@@ -43,7 +45,9 @@ describe 'CashRegister' do
       it 'applies the discount to the total price' do
         cash_register_with_discount.add_item("macbook air", 1000)
         cash_register_with_discount.apply_discount
+        binding.pry
         expect(cash_register_with_discount.total).to eq(800)
+
       end
 
       it 'returns success message with updated total' do
